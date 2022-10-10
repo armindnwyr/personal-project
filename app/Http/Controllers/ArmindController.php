@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\armind;
+use Illuminate\Http\Request;
+
+class ArmindController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $docente = armind::orderBy('id', 'desc' )->paginate(); //::paginate(); para mostrar solo una cantidad de datos
+        
+        return view('docente.index', compact('docente'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('docente.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre'=> 'required',
+            'paterno'=> 'required',
+            'materno'=> 'required',
+            'link' => 'required',
+        ]);
+
+        //return $request->all();
+        $docente = new Armind();
+
+        $docente->a_nombre = $request->nombre;
+        $docente->a_paterno = $request->paterno;
+        $docente->a_materno = $request->materno;
+        $docente->a_link = $request->link;
+
+       $docente->save();
+
+       return redirect()->route('docente.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\armind  $armind
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Armind $docente)
+    {
+        return view('docente.index', compact('docente'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\armind  $armind
+     * @return \Illuminate\Http\Response
+     */
+    public function edit( Armind $docente)
+    {
+        //return $docente;
+        return view('docente.edit', compact('docente'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\armind  $armind
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Armind $docente)
+    {
+        $request->validate([
+            'nombre'=> 'required',
+            'paterno'=> 'required',
+            'materno'=> 'required',
+            'link' => 'required',
+        ]);
+
+        $docente->a_nombre = $request->nombre;
+        $docente->a_paterno = $request->paterno;
+        $docente->a_materno = $request->materno;
+        $docente->a_link = $request->link;
+
+        //return $docente;
+
+        $docente->save();
+
+        return redirect()->route('docente.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\armind  $armind
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Armind $docente)
+    {
+        $docente->delete();
+
+        return redirect()->route('docente.index');
+    }
+}
