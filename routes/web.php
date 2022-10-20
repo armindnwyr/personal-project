@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\ArmindController;
+use App\Http\Controllers\GridController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +45,4 @@ Route::get('users/{id}', function ($id) {
     
 });
 
-Route::get('henry', [LibroController::class, 'index'])->name('libro.index');
+Route::resource('grids', GridController::class);
