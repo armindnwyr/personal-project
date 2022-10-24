@@ -27,22 +27,24 @@ Route::get('curso/create', [CursoController::class, 'create'])->name('curso.crea
 Route::get('curso/{curso}', [CursoController::class, 'show'])->name('curso.show');
 
 
-Route::get('docente',[ArmindController::class,'index'])->name('docente.index');
+// Route::get('docente',[ArmindController::class,'index'])->name('docente.index');
 
-Route::get('docente/create',[ArmindController::class,'create'])->name('docente.create');
+// Route::get('docente/create',[ArmindController::class,'create'])->name('docente.create');
 
-Route::post('docente',[ArmindController::class,'store'])->name('docente.store');
+// Route::post('docente',[ArmindController::class,'store'])->name('docente.store');
 
-Route::get('docente/{docente}', [CursoController::class, 'show'])->name('docente.show');
+// Route::get('docente/{docente}', [CursoController::class, 'show'])->name('docente.show');
 
-Route::get('docente/{docente}/edit',[ArmindController::class,'edit'])->name('docente.edit');
+// Route::get('docente/{docente}/edit',[ArmindController::class,'edit'])->name('docente.edit');
 
-Route::put('docente/{docente}',[ArmindController::class,'update'])->name('docente.update');
+// Route::put('docente/{docente}',[ArmindController::class,'update'])->name('docente.update');
 
-Route::delete('docente/{docente}',[ArmindController::class,'destroy'])->name('docente.destroy');
+// Route::delete('docente/{docente}',[ArmindController::class,'destroy'])->name('docente.destroy');
 
 Route::get('users/{id}', function ($id) {
     
 });
 
 Route::resource('grids', GridController::class);
+
+Route::resource('docente',ArmindController::class);
