@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\armind;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Js;
 
 class ArmindController extends Controller
 {
@@ -14,8 +18,8 @@ class ArmindController extends Controller
      */
     public function index()
     {
-        $docente = armind::orderBy('id', 'desc' )->paginate(); //::paginate(); para mostrar solo una cantidad de datos
-        
+        $docente = armind::orderBy('id', 'desc')->paginate(); //::paginate(); para mostrar solo una cantidad de datos
+
         return view('docente.index', compact('docente'));
     }
 
@@ -38,9 +42,9 @@ class ArmindController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre'=> 'required',
-            'paterno'=> 'required',
-            'materno'=> 'required',
+            'nombre' => 'required',
+            'paterno' => 'required',
+            'materno' => 'required',
             'link' => 'required',
         ]);
 
@@ -52,9 +56,9 @@ class ArmindController extends Controller
         $docente->a_materno = $request->materno;
         $docente->a_link = $request->link;
 
-       $docente->save();
+        $docente->save();
 
-       return redirect()->route('docente.index');
+        return redirect()->route('docente.index');
     }
 
     /**
@@ -74,7 +78,7 @@ class ArmindController extends Controller
      * @param  \App\Models\armind  $armind
      * @return \Illuminate\Http\Response
      */
-    public function edit( Armind $docente)
+    public function edit(Armind $docente)
     {
         //return $docente;
         return view('docente.edit', compact('docente'));
@@ -87,12 +91,12 @@ class ArmindController extends Controller
      * @param  \App\Models\armind  $armind
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Armind $docente)
+    public function update(Request $request, Armind $docente, $suma)
     {
         $request->validate([
-            'nombre'=> 'required',
-            'paterno'=> 'required',
-            'materno'=> 'required',
+            'nombre' => 'required',
+            'paterno' => 'required',
+            'materno' => 'required',
             'link' => 'required',
         ]);
 
@@ -108,6 +112,14 @@ class ArmindController extends Controller
         return redirect()->route('docente.index');
     }
 
+    public function imprimir($id)
+    {
+        $docente = Armind::find($id);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = pdf::loadView('docente.print', compact('docente'))->save(storage_path('app/public/docente/') . $docente->a_nombre . '.pdf');
+        return $pdf->stream();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -118,6 +130,18 @@ class ArmindController extends Controller
     {
         $docente->delete();
 
-        return redirect()->route('docente.index');
+        return back();
+    }
+
+    public function search(Request $request)
+    {
+        $data = '';
+        $search = $request->get('search');
+        if($search != ''){
+            $data = DB::table('arminds')->where('a_nombre','like','%'.$search.'%')
+            ->orWhere('a_paterno','like','%' .$search. '%')->get();
+        }
+
+        return json_decode($data);
     }
 }

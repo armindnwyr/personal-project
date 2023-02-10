@@ -27,6 +27,7 @@ Route::get('curso/create', [CursoController::class, 'create'])->name('curso.crea
 Route::get('curso/{curso}', [CursoController::class, 'show'])->name('curso.show');
 
 
+
 // Route::get('docente',[ArmindController::class,'index'])->name('docente.index');
 
 // Route::get('docente/create',[ArmindController::class,'create'])->name('docente.create');
@@ -47,4 +48,6 @@ Route::get('users/{id}', function ($id) {
 
 Route::resource('grids', GridController::class);
 
+Route::get('/search', [ArmindController::class, 'search'])->name('search');
 Route::resource('docente',ArmindController::class);
+Route::get('imprimir/{id}', [ArmindController::class, 'imprimir'])->name('imprimir');
