@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Js;
+use Illuminate\Support\Facades\Storage;
 
 class ArmindController extends Controller
 {
@@ -91,7 +91,7 @@ class ArmindController extends Controller
      * @param  \App\Models\armind  $armind
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Armind $docente, $suma)
+    public function update(Request $request, Armind $docente)
     {
         $request->validate([
             'nombre' => 'required',
@@ -121,7 +121,7 @@ class ArmindController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage<.
      *
      * @param  \App\Models\armind  $armind
      * @return \Illuminate\Http\Response

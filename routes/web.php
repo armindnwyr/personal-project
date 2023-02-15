@@ -6,6 +6,8 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\ArmindController;
 use App\Http\Controllers\GridController;
+use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,18 @@ use App\Http\Controllers\GridController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes([
+    'register' => false,
+]);
 
+Route::middleware(['auth'])->group(function () {
+    route::resource('post', PostController::class);
+    Route::get('post/{post}', [PostController::class,'publish'])->name('post.publish');
+    Route::resource('docente',ArmindController::class);
+    Route::get('docente/{docente}', [ArmindController::class, 'imprimir'])->name('docente.imprimir');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', HomeController::class);
 
 Route::get('curso', [CursoController::class, 'index'])->name('curso.index');
@@ -49,5 +62,4 @@ Route::get('users/{id}', function ($id) {
 Route::resource('grids', GridController::class);
 
 Route::get('/search', [ArmindController::class, 'search'])->name('search');
-Route::resource('docente',ArmindController::class);
-Route::get('imprimir/{id}', [ArmindController::class, 'imprimir'])->name('imprimir');
+
