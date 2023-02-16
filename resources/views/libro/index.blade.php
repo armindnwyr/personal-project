@@ -16,7 +16,6 @@
                                  <th>Editorial</th>
                                  <th>Año</th>
                                  <th>Idioma</th>
-                                 <th>Autor</th>
                                  <th>Acciones</th>
                              </tr>
                             </thead>
@@ -27,7 +26,6 @@
                                      <td>{{ $item->editorial }}</td>
                                      <td>{{ $item->anio }}</td>
                                      <td>{{ $item->idioma }}</td>
-                                     <td>{{ $item->autor->nombres }}</td>
                                      <td>
                                          <div class="btn-group">
                                              <div class="p-2">

@@ -21,8 +21,10 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        $this->call(PostSeeder::class);
         $this->call(AutorSeeder::class);
         $this->call(LibroSeeder::class);
+        $this->call(ArmindSeeder::class);
 
     }
 }

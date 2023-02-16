@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArmindFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,10 +14,9 @@ class ArmindFactory extends Factory
     public function definition()
     {
         return [
-            'a_nombre' => $this->faker->name(),
-            'a_paterno' => $this->faker->name(),
-            'a_materno' => $this->faker->name(),
-            'a_link' => $this->faker->url(),
+            'titulo' => $this->faker->name(),	
+            'url' => $this->faker->url(3),	
+            'descripcion' => $this->faker->realText(),	
         ];
     }
 }
