@@ -37,12 +37,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', HomeController::class);
 
-Route::get('curso', [CursoController::class, 'index'])->name('curso.index');
-
-Route::get('curso/create', [CursoController::class, 'create'])->name('curso.create');
-
-Route::get('curso/{curso}', [CursoController::class, 'show'])->name('curso.show');
-
 
 
 // Route::get('docente',[ArmindController::class,'index'])->name('docente.index');
