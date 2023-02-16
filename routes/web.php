@@ -53,9 +53,6 @@ Route::get('/', HomeController::class);
 
 // Route::delete('docente/{docente}',[ArmindController::class,'destroy'])->name('docente.destroy');
 
-Route::get('users/{id}', function ($id) {
-    
-});
 
 Route::resource('grids', GridController::class);
 
