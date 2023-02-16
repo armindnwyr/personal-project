@@ -15,6 +15,15 @@ class CreateLibrosTable extends Migration
     {
         Schema::create('libros', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->string('paginas');
+            $table->string('editorial');
+            $table->string('isbn');
+            $table->date('anio');
+            $table->string('idioma');
+            $table->longText('resumen');
+
+            // $table->foreignId('autor_id')->constrained('autors')->onDelete('cascade');
             $table->timestamps();
         });
     }

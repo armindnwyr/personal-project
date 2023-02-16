@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePruebasTable extends Migration
+class CreateAutorLibroTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreatePruebasTable extends Migration
      */
     public function up()
     {
-        Schema::create('pruebas', function (Blueprint $table) {
+        Schema::create('autor_libro', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('libro_id')->constrained('libros')->onDelete('cascade');
+            $table->foreignId('autor_id')->constrained('autors')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreatePruebasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pruebas');
+        Schema::dropIfExists('autor_libro');
     }
 }

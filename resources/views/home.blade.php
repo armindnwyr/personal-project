@@ -8,9 +8,9 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (Session::Has('success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session::get('status') }}
                         </div>
                     @endif
 

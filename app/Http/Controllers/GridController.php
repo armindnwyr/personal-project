@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class GridController extends Controller
@@ -13,7 +14,9 @@ class GridController extends Controller
      */
     public function index()
     {
-        return view('grids.index');
+        $post = Post::select('*')->orderBy('id', 'desc')->get();;
+        // dd($post);
+        return view('grids.index', compact('post'));
     }
 
     /**

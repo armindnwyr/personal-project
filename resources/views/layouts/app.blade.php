@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -56,6 +58,11 @@
                                 </li>
                             @endif
                         @else
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('libro.index') }}">Libro</a>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('docente.index') }}">Docente</a>
                             </li>
@@ -91,6 +98,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @yield('js')
 </body>
-
 </html>

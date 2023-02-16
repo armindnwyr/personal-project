@@ -5,7 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\ArmindController;
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\GridController;
+use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('post/{post}', [PostController::class,'publish'])->name('post.publish');
     Route::resource('docente',ArmindController::class);
     Route::get('docente/{docente}', [ArmindController::class, 'imprimir'])->name('docente.imprimir');
+    Route::resource('libro', LibroController::class);
+    Route::resource('autor', AutorController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
