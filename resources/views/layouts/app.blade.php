@@ -64,6 +64,10 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('autor.index') }}">Autor</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('docente.index') }}">Docente</a>
                             </li>
 

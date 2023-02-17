@@ -9,6 +9,8 @@ class Libro extends Model
 {
     use HasFactory;
 
+    // protected $guarded = [];
+
     protected $fillable = [
         'id',
         'titulo',

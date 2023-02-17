@@ -72,7 +72,7 @@ class AutorController extends Controller
      */
     public function edit(Autor $autor)
     {
-        return view('autor.edit');
+        return view('autor.edit', ['autor'=>$autor]);
     }
 
     /**
