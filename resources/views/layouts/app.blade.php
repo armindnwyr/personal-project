@@ -60,19 +60,19 @@
                         @else
                         
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('libro') ? 'active bg-dark text-light border rounded-3 ':'' }}" href="{{ route('libro.index') }}">Libro</a>
+                                <a class="nav-link {{ request()->is('libro*') ? 'active bg-dark text-light border rounded-3 ':'' }}" href="{{ route('libro.index') }}">Libro</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('autor') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('autor.index') }}">Autor</a>
+                                <a class="nav-link {{ request()->is('autor*') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('autor.index') }}">Autor</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('docente') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('docente.index') }}">Docente</a>
+                                <a class="nav-link {{ request()->is('docente*') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('docente.index') }}">Docente</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('post') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('post.index') }}">Post</a>
+                                <a class="nav-link {{ request()->is('post*') ? 'active bg-dark text-light border rounded-3':'' }}" href="{{ route('post.index') }}">Post</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

@@ -15,7 +15,7 @@ class AutorController extends Controller
      */
     public function index()
     {
-        $autor = Autor::all();
+        $autor = Autor::select('*')->orderBy('id','desc')->get();
         
         return view('autor.index', compact('autor'));
     }
