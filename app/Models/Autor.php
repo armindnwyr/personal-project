@@ -16,7 +16,7 @@ class Autor extends Model
         'bibliografia',
     ];
 
-    public function libro(){
+    public function libros(){
         return $this->belongsToMany(Libro::class);
     }
 }

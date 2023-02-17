@@ -20,9 +20,10 @@ class Libro extends Model
         'anio',
         'idioma',
         'resumen',
+        'autor',
     ];
 
-    public function autor(){
+    public function autors(){
         return $this->belongsToMany(Autor::class);
     }
 }

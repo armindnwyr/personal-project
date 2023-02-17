@@ -28,7 +28,7 @@
                                      <td>{{ $item->anio }}</td>
                                      <td>{{ $item->idioma }}</td>
                                      <td>
-                                        @foreach ($item->autor as $autor)
+                                        @foreach ($item->autors as $autor)
                                            <span class="badge rounded-pill bg-dark"> {{ $autor->nombres }}</span>
                                         @endforeach
                                      </td>

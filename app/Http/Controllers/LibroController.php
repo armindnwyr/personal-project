@@ -48,10 +48,10 @@ class LibroController extends Controller
             'paginas' => 'required',
             'idioma' => 'required',
             'resumen' => 'required',
-            'autor_id' => 'required',
+            'autors' => 'required',
         ]);
 
-        Libro::create([
+        $libro = Libro::create([
             'titulo' => $request->titulo,
             'editorial' => $request->editorial,
             'isbn' => $request->isbn,
@@ -59,8 +59,9 @@ class LibroController extends Controller
             'paginas' => $request->paginas,
             'idioma' => $request->idioma,
             'resumen' => $request->resumen,
-            'autor_id' => json_decode($request->autor_id),
         ]);
+        
+        $libro->autors()->attach($request->autors);
 
         return Redirect::route('libro.index');
     }
@@ -84,7 +85,9 @@ class LibroController extends Controller
      */
     public function edit(Libro $libro)
     {
-        return view('libro.edit', ['libro'=>$libro]);
+        $autors = Autor::all();
+
+        return view('libro.edit', compact('libro', 'autors'));
     }
 
     /**
@@ -116,6 +119,9 @@ class LibroController extends Controller
             'resumen' => $request->resumen,
         ]);
 
+        $libro->autors()->sync($request->autors);
+
+        // dd($libro);
         return Redirect::route('libro.index');
     }
 

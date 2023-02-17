@@ -80,6 +80,19 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group input-gruop-sm">
+                                        <label>Autor</label>
+                                        <select class="js-example-basic-multiple form-control" name="autors[]" multiple="multiple">
+                                            @foreach ($autors as $aut)
+                                                <option value="{{ $aut->id }}" @if($libro->autors->contains($aut->id)) selected @endif>{{ $aut->nombres }}</option>
+                                            @endforeach
+                                          </select>
+                                          @error('autors')
+                                          <small class="text-danger">{{ $message }}</small>
+                                          @enderror
+                                    </div>
+                                </div>
                                 {{-- <div class="col-md-6">
                                 <div class="form-group input-group-sm">
                                     <label>{{ __('Portada') }}</label>
@@ -94,4 +107,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
 @endsection

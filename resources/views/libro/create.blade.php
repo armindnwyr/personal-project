@@ -74,14 +74,17 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group input-gruop-sm">
                                         <label>Autor</label>
-                                        <select class="js-example-basic-multiple form-control" name="autor_id">
+                                        <select class="js-example-basic-multiple form-control" name="autors[]" multiple="multiple">
                                             @foreach ($autor as $aut)
                                                 <option value="{{ $aut->id }}">{{ $aut->nombres }}</option>
                                             @endforeach
                                           </select>
+                                          @error('autors')
+                                          <small class="text-danger">{{ $message }}</small>
+                                          @enderror
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-6">
