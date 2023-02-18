@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <a href="{{ route('libro.index') }}" class="btn btn-sm btn-primary mb-2">Back</a>
                 <div class="card">
                     <div class="card-header">{{ __('Book') }}</div>
                     <div class="card-body">
@@ -85,7 +86,7 @@
                                         <label>Autor</label>
                                         <select class="js-example-basic-multiple form-control" name="autors[]" multiple="multiple">
                                             @foreach ($autors as $aut)
-                                                <option value="{{ $aut->id }}" @if($libro->autors->contains($aut->id)) selected @endif>{{ $aut->nombres }}</option>
+                                                <option value="{{ $aut->id }}" @if($libro->autors->contains($aut->id)) selected @endif>{{ $aut->nombres }} {{ $aut->apellidos }}</option>
                                             @endforeach
                                           </select>
                                           @error('autors')
@@ -100,7 +101,7 @@
                                 </div>
                             </div> --}}
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary mt-2">Store</button>
+                            <button type="submit" class="btn btn-sm btn-primary mt-2">Update</button>
                         </form>
                     </div>
                 </div>

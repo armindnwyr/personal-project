@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Libro;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(PostSeeder::class);
-        $this->call(AutorSeeder::class);
+        // $this->call(AutorSeeder::class);
         $this->call(LibroSeeder::class);
         $this->call(ArmindSeeder::class);
 
