@@ -19,6 +19,7 @@ class CreateArmindsTable extends Migration
             $table->string("a_paterno",80);
             $table->string("a_materno",80);
             $table->string("a_link",100);
+            $table->enum('a_genero',['Masculino','Femenino','No Definido']);
             $table->timestamps();
         });
     }

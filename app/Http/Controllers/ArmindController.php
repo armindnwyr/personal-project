@@ -30,6 +30,7 @@ class ArmindController extends Controller
      */
     public function create()
     {
+        
         return view('docente.create');
     }
 
