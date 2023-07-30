@@ -5,6 +5,30 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <a href="{{ route('post.create') }}" class="btn btn-primary btn-sm mb-2">Create Post</a>
+                <div class="mb-4">
+                    <form action="{{ route('post.filter') }}" method="GET">
+                       <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Fecha de Inicio</label>
+                                <input type="date"  class="form-control" name="fecha_inicio" value="{{ old('fecha_inicio') }}">
+                                @error('fecha_inicio')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Ultima Fecha</label>
+                                <input type="date"  class="form-control" name="fecha_final" value="{{ old('fecha_final') }}">
+                                @error('fecha_final')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror   
+                            </div>
+                       </div>
+                       <div class="text-center">
+                           <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                           <a href="{{ route('post.index') }}" class="btn btn-danger btn-sm">Limpiar</a>
+                        </div>
+                    </form>
+                </div>
                 <div class="card">
                     <div class="card-header">{{ __('Publicaciones') }}</div>
                     <div class="card-body">
@@ -14,6 +38,8 @@
                                     <tr>
                                         <th>Titulo</th>
                                         <th>Postear</th>
+                                        <th>Fecha</th>
+                                        {{-- <th scope="4"></th> --}}
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -28,6 +54,7 @@
                                                 <span class="badge badge-primary" style="background: rgb(126, 205, 7)">Publicado</span>
                                                 @endif
                                             </td>
+                                            <td>{{ $ps->created_at->format('d/m/Y') }}</td>
                                             <td class="d-flex">
                                                 @if ($ps->postear == false)
                                                 <a class="btn btn-sm btn-info m-2" href="{{ route('post.publish', $ps->id) }}">Publicar</a>

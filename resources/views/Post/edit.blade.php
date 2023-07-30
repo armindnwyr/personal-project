@@ -29,7 +29,7 @@
 
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea name="descripcion" id="" cols="10" rows="10" class="form-control">{{ $post->descripcion }}</textarea>
+                                <textarea name="descripcion" id="descripcion" cols="10" rows="10" class="form-control">{{ $post->descripcion }}</textarea>
                                 @error('descripcion')
                                 <small class="text-danger">{{$message}}</small>
                                 @enderror 
@@ -42,4 +42,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#descripcion').summernote({
+        placeholder: 'description...',
+        tabsize: 2,
+        height: 300,
+    });
+</script>
 @endsection

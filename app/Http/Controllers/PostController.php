@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use DOMDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $post = Post::all();
@@ -20,22 +19,28 @@ class PostController extends Controller
         return view('Post.index', ['post' => $post]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function filter(Request $request)
+    {
+        $request->validate([
+            'fecha_inicio' => 'required',
+            'fecha_final' => 'required',
+        ]);
+        
+        $inicio = $request->fecha_inicio;
+        $final = $request->fecha_final;
+        $post = Post::whereDate('created_at','>=',$inicio)
+                    ->whereDate('created_at','<=',$final)->get();
+        
+        return view('Post.index', compact('post'));
+
+    }
+
     public function create()
     {
         return view('Post.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -43,44 +48,47 @@ class PostController extends Controller
             'descripcion' => 'required',
         ]);
 
+        $descripcion =  $request->descripcion;
+
+        // return $request;
+        $dom = new DOMDocument();
+
+        $dom->loadHTML($descripcion,9);
+
+        $images = $dom->getElementsByTagName('img');
+
+        foreach ($images as $key => $img) {
+            $data = base64_decode(explode(',',explode(';',$img->getAttribute('src'))[1])[1]);
+            $image_name = "/upload/" . time(). $key.'.jpg';
+            file_put_contents(public_path().$image_name,$data);
+
+            $img->removeAttribute('src');
+            $img->setAttribute('src',$image_name);
+        }
+
+        $descripcion = $dom->saveHTML();
+
         Post::create([
             'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
+            'descripcion' => $descripcion,
             'url' => $request->url,
         ]);
 
         return Redirect::route('post.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Post $post)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Post $post)
     {
         return view('Post.edit', ['post' => $post]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Post $post)
     {
         $request->validate([
@@ -88,23 +96,59 @@ class PostController extends Controller
             'descripcion' => 'required',
         ]);
 
+        $descripcion = $request->descripcion;
+
+        $dom = new DOMDocument();
+        $dom->loadHTML($descripcion,9);
+
+        $images = $dom->getElementsByTagName('img');
+
+        
+        foreach ($images as $key => $img) {
+
+            // Check if the image is a new one
+            if (strpos($img->getAttribute('src'),'data:image/') ===0) {
+              
+                $data = base64_decode(explode(',',explode(';',$img->getAttribute('src'))[1])[1]);
+                $image_name = "/upload/" . time(). $key.'.jpg';
+                file_put_contents(public_path().$image_name,$data);
+                
+                $img->removeAttribute('src');
+                $img->setAttribute('src',$image_name);
+            }
+
+        }
+        $descripcion = $dom->saveHTML();
+
         $post->update([
             'titulo' => $request->titulo,
-            'descripcion' => $request->descripcion,
+            'descripcion' => $descripcion,
             'url' => $request->url,
         ]);
 
         return Redirect::route('post.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Post $post)
     {
+
+        $dom= new DOMDocument();
+        $dom->loadHTML($post->descripcion,9);
+        $images = $dom->getElementsByTagName('img');
+
+        foreach ($images as $key => $img) {
+            
+            $src = $img->getAttribute('src');
+            $path = Str::of($src)->after('/');
+
+
+            if (File::exists($path)) {
+                File::delete($path);
+               
+            }
+        }
+
         $post->delete();
 
         return back();

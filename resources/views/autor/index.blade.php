@@ -49,3 +49,32 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+@if (session('success'))    
+<script>
+    Lobibox.notify('success', {
+        // width: 400,
+        hight: 900,
+        img: "{{ asset('imgs/success.png') }}",
+        position: 'top right',
+        title: "Registrado Autor",
+        msg: '{{ session('success') }}'
+    });
+</script>
+@endif
+
+@if (session('delete'))    
+<script>
+    Lobibox.notify('info', {
+        // width: 400,
+        hight: 200,
+        modal: true,
+        img: "{{ asset('imgs/success.png') }}",
+        position: 'top right',
+        title: "Autor Eliminado",
+        msg: '{{ session('delete') }}'
+    });
+</script>
+@endif
+@endsection

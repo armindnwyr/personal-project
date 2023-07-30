@@ -50,7 +50,7 @@ class AutorController extends Controller
             'bibliografia' => $request->bibliografia,
         ]);
 
-        return Redirect::route('autor.index');
+        return Redirect::route('autor.index')->with('success', 'Registrado Satisfactoriamente');
     }
 
     /**
@@ -109,6 +109,6 @@ class AutorController extends Controller
     {
         $autor->delete();
 
-        return Redirect::route('autor.index');
+        return Redirect::route('autor.index')->with('delete', 'arty puto');
     }
 }

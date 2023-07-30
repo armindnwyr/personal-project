@@ -79,7 +79,7 @@
                         <div class="card-header">{{ $item->titulo }}
                         </div>
                         <div class="card-body">
-                            <p>{{ $item->descripcion }}</p>
+                            <p>{!! $item->descripcion !!}</p>
                         </div>
                     </div>
                 </div>

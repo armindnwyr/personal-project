@@ -28,6 +28,7 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () {
     route::resource('post', PostController::class);
     Route::get('post/{post}', [PostController::class,'publish'])->name('post.publish');
+    Route::get('filter', [PostController::class,'filter'])->name('post.filter');
     Route::resource('docente',ArmindController::class);
     Route::get('docente/{docente}', [ArmindController::class, 'imprimir'])->name('docente.imprimir');
     Route::resource('libro', LibroController::class);
@@ -57,4 +58,8 @@ Route::get('/', HomeController::class);
 Route::resource('grids', GridController::class);
 
 Route::get('/search', [ArmindController::class, 'search'])->name('search');
+
+Route::get('/notify', function(){
+    return view('notificaciones');
+});
 

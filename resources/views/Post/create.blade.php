@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <a href="{{ route('post.index') }}" class="btn btn-primary btn-sm mb-2">Back index</a>
             <div class="card">
                 <div class="card-header">{{ __('Post') }}</div>
@@ -28,7 +27,7 @@
 
                             <div class="form-group">
                                 <label>Descripción</label>
-                                <textarea name="descripcion" id="" cols="5" rows="5" class="form-control"></textarea>
+                                <textarea name="descripcion" id="descripcion" cols="5" rows="5" class="form-control"></textarea>
                                 @error('descripcion')
                                 <small class="text-danger">{{$message}}</small>
                                 @enderror 
@@ -41,4 +40,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#descripcion').summernote({
+        placeholder: 'description...',
+        tabsize: 2,
+        height: 300
+    });
+</script>
 @endsection
