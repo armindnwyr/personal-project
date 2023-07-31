@@ -9,6 +9,7 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\GridController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -33,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('docente/{docente}', [ArmindController::class, 'imprimir'])->name('docente.imprimir');
     Route::resource('libro', LibroController::class);
     Route::resource('autor', AutorController::class);
+    Route::resource('ticket', TicketController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

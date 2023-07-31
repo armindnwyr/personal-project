@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <a href="{{ route('post.create') }}" class="btn btn-primary btn-sm mb-2">Create Post</a>
                 <div class="mb-4">
                     <form action="{{ route('post.filter') }}" method="GET">

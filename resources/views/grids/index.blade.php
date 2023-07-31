@@ -68,10 +68,15 @@
                             laborum dolorem! Impedit quos fuga, voluptatibus repellendus reiciendis rerum.
                         </p>
                     </div>
+
+                    @foreach ($ticket as $item)
+                        <h1>{{ $item->name }}</h1>
+                        <h1>{{ $item->user_id }}</h1>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             @foreach ($post as $item)
             @if ($item->postear==true)
             <div class="col-md-4 mb-3">
@@ -85,7 +90,7 @@
                 </div>
             @endif
             @endforeach           
-    </div>
+    </div> --}}
 </body>
 
 </html>
