@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe7fa08bc98ee3eab922bff2a487e45f",
+    "content-hash": "80d2f291638ecbc58ab5f1fd34fe3506",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3224,6 +3224,118 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "rmunate/easy-datatable",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmunate/EasyDataTable.git",
+                "reference": "d50910734a7e090ac32f2df3f53d4eee6f423ae3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmunate/EasyDataTable/zipball/d50910734a7e090ac32f2df3f53d4eee6f423ae3",
+                "reference": "d50910734a7e090ac32f2df3f53d4eee6f423ae3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.4|^8.0",
+                "rmunate/php-config-runtime": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rmunate\\EasyDatatable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raul Mauricio Uñate Castro",
+                    "email": "raulmauriciounate@gmail.com",
+                    "homepage": "https://github.com/rmunate",
+                    "role": "owner"
+                }
+            ],
+            "description": "EasyDataTable: A powerful and elegant solution for effortless creation of dynamic datatables in Laravel applications.",
+            "homepage": "https://github.com/rmunate/EasyDataTable",
+            "keywords": [
+                "backend",
+                "data-grid",
+                "datatable",
+                "easy-datatable",
+                "laravel",
+                "laravel-package"
+            ],
+            "support": {
+                "issues": "https://github.com/rmunate/EasyDataTable/issues",
+                "source": "https://github.com/rmunate/EasyDataTable/tree/v1.3.0"
+            },
+            "time": "2023-07-30T16:35:49+00:00"
+        },
+        {
+            "name": "rmunate/php-config-runtime",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmunate/PHPConfigRuntime.git",
+                "reference": "d21b2f02a264b303e85edceb67a79fbd2fd1daca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmunate/PHPConfigRuntime/zipball/d21b2f02a264b303e85edceb67a79fbd2fd1daca",
+                "reference": "d21b2f02a264b303e85edceb67a79fbd2fd1daca",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "v1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rmunate\\PhpConfigRuntime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raul Mauricio Uñate Castro",
+                    "email": "raulmauriciounate@gmail.com",
+                    "homepage": "https://github.com/rmunate",
+                    "role": "owner"
+                }
+            ],
+            "description": "The PhpRunTime Library provides methods for managing PHP configuration at runtime. It allows you to set, get, and restore configuration options, as well as check their existence and status.",
+            "homepage": "https://github.com/rmunate/PHPConfigRuntime",
+            "keywords": [
+                "Agent",
+                "laravel",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/rmunate/PHPConfigRuntime/issues",
+                "source": "https://github.com/rmunate/PHPConfigRuntime/tree/v1.2.0"
+            },
+            "time": "2023-07-30T15:54:45+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

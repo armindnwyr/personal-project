@@ -6,6 +6,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\ArmindController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\DatatableController;
 use App\Http\Controllers\GridController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PostController;
@@ -36,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('autor', AutorController::class);
     Route::resource('ticket', TicketController::class);
 });
+
+Route::get('datatable/autor',[DatatableController::class, 'data'])->name('datatable.data');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', HomeController::class);
