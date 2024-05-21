@@ -16,7 +16,7 @@
                                  <th>Editorial</th>
                                  <th>Año</th>
                                  <th>Idioma</th>
-                                 <th>Autor</th>
+                                 {{-- <th>Autor</th> --}}
                                  <th>Acciones</th>
                              </tr>
                             </thead>
@@ -27,11 +27,11 @@
                                      <td>{{ $item->editorial }}</td>
                                      <td>{{ $item->anio }}</td>
                                      <td>{{ $item->idioma }}</td>
-                                     <td>
+                                     {{-- <td>
                                         @foreach ($item->autors as $autor)
                                            <span class="badge rounded-pill bg-dark"> {{ $autor->nombres }}</span>
                                         @endforeach
-                                     </td>
+                                     </td> --}}
                                      <td>
                                          <div class="btn-group">
                                              <div class="p-2">

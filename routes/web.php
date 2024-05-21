@@ -43,6 +43,9 @@ Route::get('datatable/autor',[DatatableController::class, 'data'])->name('datata
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', HomeController::class);
 
+Route::get('anexo', function(){
+    return view('anexo');
+});
 
 
 // Route::get('docente',[ArmindController::class,'index'])->name('docente.index');
